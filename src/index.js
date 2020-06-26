@@ -2,6 +2,8 @@
 import "./assets/styles/style.scss";
 import "./index.scss";
 
+/* Appel de l'API */
+
 const produitSell = "cameras"
 const url = "http://localhost:3000/api/" + produitSell + "/";
 
@@ -17,3 +19,5 @@ apiUrl
     }
   })
   .catch((error) => console.log(error));
+
+
