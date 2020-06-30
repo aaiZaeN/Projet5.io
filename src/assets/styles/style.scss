@@ -15,6 +15,8 @@
     auto;
 }
 
+
+
 header {
   grid-area: header;
   background: #9b59b6;
@@ -57,4 +59,16 @@ footer {
   font-size: 1.8rem;
   text-align: center;
   color: white;
+}
+
+.listProductBlock {
+  width: 50%;
+  margin: 25px auto 25px 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1em;
+  border: solid 1px rgb(3, 3, 3);
+  .listProductBlockRight {
+    padding: 15px;
+  }
 }
