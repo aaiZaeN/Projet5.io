@@ -10,7 +10,7 @@
   display: grid;
   grid:
     "header" auto
-    "content" 1fr
+    "content" "content" 1fr 
     "footer" auto /
     auto;
 }
@@ -52,6 +52,12 @@ header {
   padding: 20px;
 }
 
+
+
+h3 {
+  font-size: 2rem;
+}
+
 footer {
   grid-area: footer;
   padding: 2rem;
@@ -61,14 +67,31 @@ footer {
   color: white;
 }
 
+.listProductBlockLeft {
+  img:hover {
+    -webkit-transform: scale(1.1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out; 
+    transform: scale(1.5);
+    cursor: pointer;
+}
+}
+
 .listProductBlock {
   width: 50%;
-  margin: 25px auto 25px 25px;
+  margin: 25px 0 2em 15rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1em;
   border: solid 1px rgb(3, 3, 3);
+  h2 {
+    font-size: 2rem;
+  }
   .listProductBlockRight {
     padding: 15px;
   }
+}
+
+#listTitle {
+  margin: 2rem 0 0 2rem;
 }
