@@ -28,30 +28,69 @@
           <p id="panierVide">Votre panier est vide</p>
         </div>
         
-         <div class="form">
-          <form action="/ma-page-de-traitement" method="post">
-            <div>
-                <label for="name">Nom :</label>
-                <input type="text" id="name" name="user_name">
-            </div>
-            <div>
-              <label for="name">Prénom</label>
-              <input type="text" id="name" name="user_name">
-            </div>
-            <div>
-              <label for="dateOfBirth">Date de naissance</label>
-              <input type="text" id="datelist" name="date">
-            </div>
-            <div>
-                <label for="mail">e-mail :</label>
-                <input type="email" id="mail" name="user_mail">
-            </div>
-            <div>
-                <label for="msg">Message :</label>
-                <textarea id="msg" name="user_message"></textarea>
-            </div>
-            <button class="sendForm">Passer votre commande</button>
-        </form>
+        <section>
+          <h2>Informations de contact</h2>
+          <fieldset>
+            <legend>Qualité</legend>
+            <ul>
+                <li>
+                  <label for="title_1">
+                    <input type="radio" id="title_1" name="title" value="M." >
+                    Monsieur
+                  </label>
+                </li>
+                <li>
+                  <label for="title_2">
+                    <input type="radio" id="title_2" name="title" value="Mme.">
+                    Madame
+                  </label>
+                </li>
+            </ul>
+          </fieldset>
+          <p>
+            <label for="name">
+              <span>Nom : </span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input type="text" id="name" name="username">
+          </p>
+          <p>
+            <label for="name">
+              <span>Prénom : </span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input type="text" id="name" name="username">
+          </p>
+          <p>
+            <label for="mail">
+              <span>e-mail :</span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input type="email" id="mail" name="usermail">
+          </p>
+          <p>
+            <label for="zipCode">
+              <span>Code Postale : </span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input type="text" id="zipCode" name="zipCode">
+          </p>
+          <p>
+            <label for="city">
+              <span>Ville : </span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input type="text" id="city" name="city">
+          </p>
+          <p>
+            <label for="address">
+              <span>Adresse : </span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input row type="text" id="address" name="address">
+          </p>          
+          <button>Passer votre commande</button>
+      </section>
          </div>        
       </div>
       <script src=""></script>
