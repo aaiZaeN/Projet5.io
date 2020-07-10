@@ -38,7 +38,7 @@ section {
   grid: 2/4;
 }
 
-.annulerProduit{
+.cancelProduct{
   color: red;
 }
 
@@ -46,12 +46,8 @@ section {
   margin: 2rem 0 0 2rem;
 }
 
-#panierVide {
+#emptyBasket {
   margin: 25px 0 25px 25px;
-}
-
-.annulerProduit {
-  color: black;
 }
 
 table, td, th {
@@ -70,14 +66,19 @@ table {
   margin: 150px 0 0 150px;
   padding: 5px;
   border-radius: 15px;
-  .annulerProduit {
+  .cancelProduct {
     font-size: 15px;
     color: rgb(216, 147, 147);
     cursor: pointer;
   }
 }
 
-.annulerProduit:hover {
+.cancelProduct {
+  color: black;
+  margin: 3px;
+}
+
+.cancelProduct:hover {
   color: rgb(218, 31, 31);
   font-size: 16px;
-}
+  }

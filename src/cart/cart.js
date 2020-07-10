@@ -23,29 +23,29 @@ if(localStorage.getItem("userBasket")){
     //Vérifie si un produit est dans le panier
     if(JSON.parse(localStorage.getItem("userBasket")).length > 0){
       //Si produit dans le panier = supprimer message + creer tableau
-      document.getElementById("panierVide").remove();
+      document.getElementById("emptyBasket").remove();
 
       //Structure tableau  
-      let facture = document.createElement("table");
-      let ligneTableau = document.createElement("tr");
-      let colonneNom = document.createElement("th");
-      let colonnePrixUnitaire = document.createElement("th");
-      let colonneRemove = document.createElement("th");
-      let ligneTotal = document.createElement("tr");
-      let colonneRefTotal = document.createElement("th");
-      let colonnePrixPaye = document.createElement("td");
+      let bill = document.createElement("table");
+      let rowTable = document.createElement("tr");
+      let columnName = document.createElement("th");
+      let columnUnitPrice = document.createElement("th");
+      let columnRemove = document.createElement("th");
+      let rowTotal = document.createElement("tr");
+      let columnTotalRef = document.createElement("th");
+      let columnPrice = document.createElement("td");
 
       //Placement de la structure dans la page et du contenu des entetes
-      let factureSection = document.getElementById("basketResume");
-      factureSection.appendChild(facture);
-      facture.appendChild(ligneTableau);
-      ligneTableau.appendChild(colonneNom);
-      colonneNom.textContent = "Nom du produit";
-      ligneTableau.appendChild(colonnePrixUnitaire);
-      colonnePrixUnitaire.textContent = "Prix du produit";
-      /*ligneTableau.appendChild(colonneRemove);
-      colonneRemove.textContent = "Annuler un produit";
-      */
+      let billSection = document.getElementById("basketResume");
+      billSection.appendChild(bill);
+      bill.appendChild(rowTable);
+      rowTable.appendChild(columnName);
+      columnName.textContent = "Nom du produit";
+      rowTable.appendChild(columnUnitPrice);
+      columnUnitPrice.textContent = "Prix du produit";
+      rowTable.appendChild(columnRemove);
+      columnRemove.textContent = "Supprimer un produit";
+      
 
       //Pour chaque produit du panier, on créé une ligne avec le nom, le prix, l'accessoire (lenses)
       
@@ -54,53 +54,53 @@ if(localStorage.getItem("userBasket")){
       
       JSON.parse(localStorage.getItem("userBasket")).forEach((product)=>{
         //Création de la ligne
-        let ligneProduit = document.createElement("tr");
-        let nomProduit = document.createElement("td");
-        let prixUnitProduit = document.createElement("td");
-        let removeProduit = document.createElement("i");
+        let rowProduct = document.createElement("tr");
+        let nameProduct = document.createElement("td");
+        let priceUnitProduct = document.createElement("td");
+        let removeProduct = document.createElement("i");
 
         //Attribution des class pour le css
-        ligneProduit.setAttribute("id", "product"+i);
-        removeProduit.setAttribute("id", "remove"+i);
-        removeProduit.setAttribute('class', "fas fa-trash-alt annulerProduit");
+        rowProduct.setAttribute("id", "product"+i);
+        removeProduct.setAttribute("id", "remove"+i);
+        removeProduct.setAttribute('class', "fas fa-trash-alt cancelProduct");
         
-        //annulerProduit 
-        removeProduit.addEventListener('click', annulerProduit.bind(i));
+        //cancelProduct 
+        removeProduct.addEventListener('click', cancelProduct.bind(i));
         i++;
 
         
-        facture.appendChild(ligneProduit);
-        ligneProduit.appendChild(nomProduit);
-        ligneProduit.appendChild(prixUnitProduit);
-        ligneProduit.appendChild(removeProduit);
+        bill.appendChild(rowProduct);
+        rowProduct.appendChild(nameProduct);
+        rowProduct.appendChild(priceUnitProduct);
+        rowProduct.appendChild(removeProduct);
 
         //Contenu des lignes
-        nomProduit.innerHTML = product.name;
-        prixUnitProduit.textContent = product.price / 100 + " €";
+        nameProduct.innerHTML = product.name+" + "+product.lenses;
+        priceUnitProduct.textContent = product.price / 100 + " €";
     });
 
       //Dernière ligne du tableau : Total
-      facture.appendChild(ligneTotal);
-      ligneTotal.appendChild(colonneRefTotal);
-      colonneRefTotal.textContent = "Total à payer"
-      ligneTotal.appendChild(colonnePrixPaye);
-      colonnePrixPaye.setAttribute("id", "sommeTotal")
+      bill.appendChild(rowTotal);
+      rowTotal.appendChild(columnTotalRef);
+      columnTotalRef.textContent = "Total à payer"
+      rowTotal.appendChild(columnPrice);
+      columnPrice.setAttribute("id", "sommeTotal")
 
       //Calcule de l'addition total
-      let totalPaye = 0;
+      let totalPrice = 0;
       JSON.parse(localStorage.getItem("userBasket")).forEach((product)=>{
-      	totalPaye += product.price / 100;
+      	totalPrice += product.price / 100;
       });
 
       //Total à payer dans l'addition
-      console.log("Administration : " + totalPaye);
-      document.getElementById("sommeTotal").textContent = totalPaye + " €";
+      console.log("Administration : " + totalPrice);
+      document.getElementById("sommeTotal").textContent = totalPrice + " €";
       
   };
 
   
   //Supprimer un produit du panier
- function annulerProduit (i){
+ function cancelProduct (i){
   	console.log("Administration : Enlever le produit à l'index " + i);
       //recupérer le array
       userBasket.splice(i, 1); 
@@ -109,7 +109,7 @@ if(localStorage.getItem("userBasket")){
       localStorage.clear();
       console.log("Administration : localStorage vidé");
       // mettre à jour le localStorage avec le nouveau panier
-      localStorage.setItem('userPanier', JSON.stringify(userBasket));
+      localStorage.setItem('userBasket', JSON.stringify(userBasket));
       console.log("Administration : localStorage mis à jour");
       //relancer la création de l'addition
       window.location.reload();
