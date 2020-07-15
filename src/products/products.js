@@ -49,15 +49,15 @@ const url = "http://localhost:3000/api/" + produitSell + "/"+idProduit;
             userBasket.push(products);
             localStorage.setItem("userBasket", JSON.stringify(userBasket));
             console.log("Administration : le produit a été ajouté au panier");
-            alert("Vous avez ajouté ce produit dans votre panier: "+product.name)
+            alert("Vous avez ajouté ce produit dans votre panier: "+product.name+" "+produitSelected.lenses)
           });
           
 
           switch(produitSell){
             case "cameras":
             produitSelected.lenses.forEach((produit)=>{
-              let optionProduit = document.createElement("option");
-              document.getElementById("optionSelect").appendChild(optionProduit).innerHTML = produit;
+              let optionProduct = document.createElement("option");
+              document.getElementById("optionSelect").appendChild(optionProduct).innerHTML = produit;
             });
           }
                 
@@ -66,13 +66,4 @@ const url = "http://localhost:3000/api/" + produitSell + "/"+idProduit;
 });
 
 
-  /*Au clic de l'user pour mettre le produit dans le panier
-  let inputBuy = document.getElementById("ajouterProduitPanier");
-  inputBuy.addEventListener("click", async function() {
-    const products = await getProduits();
-  //Récupération du panier dans le localStorage et ajout du produit dans le panier avant revoit dans le localStorage
-  userBasket.push(products);
-  localStorage.setItem("userBasket", JSON.stringify(userBasket));
-  console.log("Administration : le produit a été ajouté au panier");
-  alert("Vous avez ajouté ce produit dans votre panier")
-});*/
+  

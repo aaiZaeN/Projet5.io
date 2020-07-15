@@ -114,3 +114,44 @@ if(localStorage.getItem("userBasket")){
       //relancer la création de l'addition
       window.location.reload();
   };
+
+
+  //POST Formulaire
+
+    //Récupération des inputs
+    let formName = document.getElementById("formName").value;
+    let formFirstName = document.getElementById("formFirstName").value;
+    let formMail = document.getElementById("formMail").value;
+    let formZipCode = document.getElementById("formZipCode").value;
+    let formAdresse = document.getElementById("formAdresse").value;
+    let formCity = document.getElementById("formCity").value;
+
+async function sendRequest() {
+  try {
+    const formOrder = {
+        formName : formName,
+        formFirstName : formFirstName,
+        formMail : formMail,
+        formZipCode : formZipCode,
+        formAdresse : formAdresse,
+        formCity : formCity
+    };  
+    const reponse = await fetch("http://localhost:3000/api/" + "/order", {
+      method: "POST",
+      headers: {
+        "Conten-Type": "application/json"
+      },
+      body: JSON.stringify(formOrder)
+    });
+    const json = await response.json();
+    afficherLeResultat(json);
+  } catch (err) {
+    console.error(err);
+  }
+}
+sendRequest();
+
+//ecoute du click sur le bouton envoyer
+
+//creer alerte "commande passée avec succés" + infos
+
