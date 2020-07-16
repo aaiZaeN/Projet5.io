@@ -118,40 +118,143 @@ if(localStorage.getItem("userBasket")){
 
   //POST Formulaire
 
+  //Vérification des inputs
+  function checkInputs() {
+    //controle regex
+    let checkString = /[a-zA-A]/;
+    let checkNumber = /[0-9]/;
+    //controle mail
+    let checkMail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/y;
+    let checkSpecialCharacter = /[§!@#$%^&*(),.?":{}|<>]/;
+
+    //message fin du controle
+    let checkMessage = "";
+
     //Récupération des inputs
     let formName = document.getElementById("formName").value;
     let formFirstName = document.getElementById("formFirstName").value;
     let formMail = document.getElementById("formMail").value;
-    let formZipCode = document.getElementById("formZipCode").value;
-    let formAdresse = document.getElementById("formAdresse").value;
+    let formAdresse = document.getElementById("formAdress").value;
     let formCity = document.getElementById("formCity").value;
 
-async function sendRequest() {
-  try {
-    const formOrder = {
-        formName : formName,
-        formFirstName : formFirstName,
-        formMail : formMail,
-        formZipCode : formZipCode,
-        formAdresse : formAdresse,
-        formCity : formCity
-    };  
+    //tests des inputs du formulaire
+      //Test du nom (aucun chiffre ou charactère spécial)
+      if(checkNumber.test(formName) == true || checkSpecialCharacter.test(formName) == true || formName == ""){
+        checkMessage = "Vérifiez ou renseignez votre nom";
+      }else{
+        console.log('Administration : Nom ok');
+      };
+      //Test du prénom (aucun chiffre ou charactère spécial)
+      if(checkNumber.test(formFirstName) == true || checkSpecialCharacter.test(formFirstName) == true || formFirstName == ""){
+        checkMessage = checkMessage + "\n" + "Vérifiez ou renseignez votre prénom";
+      }else{
+        console.log('Administration : Prénom ok');
+      };
+      //Test du mail (regex source L256)
+      if(checkMail.test(formMail) == false){
+        checkMessage = checkMessage + "\n" + "Vérifiez ou renseignez votre mail";
+      }else{
+        console.log("Administration : Adresse mail ok");
+      };
+      //Test adresse (pas de charactères spéciaux)
+      if(checkSpecialCharacter.test(formAdresse) == true || formAdresse == ""){
+        checkMessage = checkMessage + "\n" + "Vérifiez ou renseignez votre adresse";
+      }else{
+        console.log("Administration : Adresse ok");
+      };
+      //Test de la ville (pas de chiffre ou charactères spéciaux)
+      if(checkSpecialCharacter.test(formCity) == true && checkNumber.test(formCity) == true || formCity == ""){
+        checkMessage = checkMessage + "\n" + "Vérifiez ou renseignez votre ville"
+      }else{
+        console.log("Administration : Ville ok")
+      };
+      //Si un champs n'est pas valide => message d'alerte
+      if(checkMessage != ""){
+        alert('Il est nécessaire de :' + '\n' + checkMessage);
+      }
+      //Si tout est valide => construction de l'objet contact
+      else{
+        formOrder = {
+          firstName : formFirstName,
+          lastName : formName,
+          adress : formAdresse,
+          city : formCity,
+          mail : formMail
+        };
+        return formOrder;
+      };
+  };
+
+  //Vérifier panier
+  function checkBasket() {
+    //Minimum 1 produit dans le panier
+    let basketStatus = JSON.parse(localStorage.getItem('userBasket'));
+    //Si panier est vide => suppression localStorage + alerte
+    if(basketStatus == null){
+      //Si le localStorage à été supprimer => alerte
+      alert('Il y a un problème avec votre panier, merci de recharger la page');
+      return false
+    }else if(basketStatus.length < 1 || basketStatus == null){
+      console.log('Administration : ERROR => le localStorage ne contient pas de panier')
+      alert('Votre panier est vide');
+      return false;
+    }else{
+      console.log('Administration : Un ou des articles sont dans le panier')
+        //Si article(s) dans le panier => remplissage products envoyé à l'API
+        JSON.parse(localStorage.getItem('userBasket')).forEach((product) =>{
+          product.push(product._id);
+        });
+        console.log("Administration : Ce tableau sera envoyé à l'API : " + product)
+        return true;
+    }
+  };
+
+/*async function sendRequest() {
     const reponse = await fetch("http://localhost:3000/api/" + "/order", {
       method: "POST",
       headers: {
         "Conten-Type": "application/json"
       },
-      body: JSON.stringify(formOrder)
+      //body: JSON.stringify(formOrder)
     });
+      //Save retour de l'API dans sessionStorage
+      sessionStorage.getItem('order', this.responseText);
+
+      //Charger page order-confirm ( A REMPLIR )
+
+
     const json = await response.json();
     afficherLeResultat(json);
-  } catch (err) {
-    console.error(err);
   }
-}
-sendRequest();
+sendRequest(); */
 
 //ecoute du click sur le bouton envoyer
+function validForm(){
+  let formBtn = document.getElementById("formButton");
+  formButton.addEventListener('click',function() {
+  alert('hello!! Le clique fonctionne bien et ici bientot ça sera la validtion de la commande')
+  if(checkBasket() == true && checkInputs() != null){
+    console.log("Administration : L'envoi peut être effectué");
+  //crétion de l'objet à envoyer
+  let objet = {
+    formOrder,
+    products
+  };
+  console.log('Administration : ' + objet);
+  //=> JSON
+  let objetRequest = JSON.stringify(objet);
+  console.log('Administration : ' + objetRequest);
+  //Envoi de l'objet
+  sendRequest(objetRequest);
 
+  //Une fois la commande effectuée => retour étt initial
+  contact = {};
+  product = {};
+  localStorage.clear();
+  }else{
+    console.log('Administration : ERROR');
+  };
+});
+};
 //creer alerte "commande passée avec succés" + infos
 
