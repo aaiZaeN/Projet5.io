@@ -49,7 +49,7 @@ const url = "http://localhost:3000/api/" + produitSell + "/"+idProduit;
             userBasket.push(products);
             localStorage.setItem("userBasket", JSON.stringify(userBasket));
             console.log("Administration : le produit a été ajouté au panier");
-            alert("Vous avez ajouté ce produit dans votre panier: "+product.name+" "+produitSelected.lenses)
+            alert("Vous avez ajouté ce produit dans votre panier: "+product.name)
           });
           
 

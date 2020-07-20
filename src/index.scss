@@ -1,0 +1,35 @@
+#listTitle {
+  margin: 50px 0 25px 25px;
+}
+
+.listProductBlock:hover {
+  background-color: var(--divider);
+}
+
+
+.listProductBlock {
+  width: 50%;
+  margin: 25px 0 2em 15rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1em;
+  border: solid 1px rgb(3, 3, 3);
+  
+  .listProductBlockRight {
+    padding: 15px;
+    a {
+      color: rgb(95, 95, 233);
+    }
+  }
+}
+
+
+@media (max-width: 480px) {
+  section {
+   .listProductBlock {
+     margin: 0 5px;
+     width: 0;
+     border: none;
+   }
+ }
+}

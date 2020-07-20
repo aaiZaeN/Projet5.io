@@ -7,7 +7,7 @@ const { template } = require("babel-core");
 module.exports = {
   entry: {
     main: path.join(__dirname, "src/index.js"),
-    form: path.join(__dirname, "src/form/form.js"),
+    confirmOrder: path.join(__dirname, "src/confirmOrder/confirm-order.js"),
     cart: path.join(__dirname, "src/cart/cart.js"),
     products: path.join(__dirname, "src/products/products.js"),
   },
@@ -42,19 +42,14 @@ module.exports = {
       chunks: ["cart", "topbar"]
     }),
     new HtmlWebpackPlugin({
-      filename:"confirm-order.html",
-      template: path.join(__dirname, "./src/cart/confirm-order.html"),
-      chunks: ["confirmOrder", "topbar"]
-    }),
-    new HtmlWebpackPlugin({
       filename: "products.html",
       template: path.join(__dirname, "./src/products/products.html"),
       chunks: ["products", "topbar"]
     }),
     new HtmlWebpackPlugin({
-      filename: "form.html",
-      template: path.join(__dirname, "./src/form/form.html"),
-      chunks: ["form", "topbar"]
+      filename: "confirm-order.html",
+      template: path.join(__dirname, "./src/confirmOrder/confirm-order.html"),
+      chunks: ["confirmOrder", "topbar"]
     })
   ],
   stats: "minimal",

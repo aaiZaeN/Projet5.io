@@ -2,17 +2,25 @@
   display: flex;
 }
 
+.sheetProduct {
+  margin: 50px;
+}
+
 .sheetProductName {
-  text-align: center;
-  margin: 2rem auto 2rem auto;
+  margin: 2rem auto 10px 10px;
 }
 
 .sheetProductDescriptionHead {
-  margin: 0 2rem;
+  margin: 1rem 2rem;
 }
 
 .sheetProductDescriptionResume {
   margin: 2rem;
+}
+
+.sheetProductImg {
+  width: 50%;
+  margin-left: 0px;
 }
 
 #priceProduct {
@@ -21,5 +29,5 @@
 
 .btnBasket {
   width: 100px;
-  margin: 2rem 15rem;
+  margin: 1rem 15rem;
 }

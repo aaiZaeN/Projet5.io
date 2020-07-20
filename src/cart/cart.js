@@ -1,9 +1,31 @@
 import '../assets/styles/style.scss'
 import './cart.scss';
 
+const produitSell = "cameras";
+const url = "http://localhost:3000/api/" + produitSell + "/";
+
+
+
+//Tableau et objet demandé par l'API pour la commande
+let contact;
+let products = [];
 /*Page panier
 **********************************************/
 
+//Appel de l'API
+function getAPI(){
+  fetch(url)
+      .then(res => res.json())
+      .then(product => {
+          console.log(product)
+      }).catch(err => {
+          console.error('Error: ', err);
+    });
+  };  
+  
+  const productAPI =  getAPI();
+
+//Vérifier si le panier existe
 if(localStorage.getItem("userBasket")){
 	console.log("Administration : le panier de l'utilisateur existe dans le localStorage");
 }else{
@@ -44,7 +66,7 @@ if(localStorage.getItem("userBasket")){
       rowTable.appendChild(columnUnitPrice);
       columnUnitPrice.textContent = "Prix du produit";
       rowTable.appendChild(columnRemove);
-      columnRemove.textContent = "Supprimer un produit";
+      columnRemove.textContent = "";
       
 
       //Pour chaque produit du panier, on créé une ligne avec le nom, le prix, l'accessoire (lenses)
@@ -75,7 +97,7 @@ if(localStorage.getItem("userBasket")){
         rowProduct.appendChild(removeProduct);
 
         //Contenu des lignes
-        nameProduct.innerHTML = product.name+" + "+product.lenses;
+        nameProduct.innerHTML = product.name;
         priceUnitProduct.textContent = product.price / 100 + " €";
     });
 
@@ -134,7 +156,7 @@ if(localStorage.getItem("userBasket")){
     let formName = document.getElementById("formName").value;
     let formFirstName = document.getElementById("formFirstName").value;
     let formMail = document.getElementById("formMail").value;
-    let formAdresse = document.getElementById("formAdress").value;
+    let formAdresse = document.getElementById("formAddress").value;
     let formCity = document.getElementById("formCity").value;
 
     //tests des inputs du formulaire
@@ -174,16 +196,17 @@ if(localStorage.getItem("userBasket")){
       }
       //Si tout est valide => construction de l'objet contact
       else{
-        formOrder = {
+        contact = {
           firstName : formFirstName,
           lastName : formName,
-          adress : formAdresse,
+          address : formAdresse,
           city : formCity,
-          mail : formMail
+          email : formMail
         };
-        return formOrder;
+        return contact;
       };
   };
+
 
   //Vérifier panier
   function checkBasket() {
@@ -199,45 +222,42 @@ if(localStorage.getItem("userBasket")){
       alert('Votre panier est vide');
       return false;
     }else{
-      console.log('Administration : Un ou des articles sont dans le panier')
+      console.log('Administration : Un ou des article(s) sont dans le panier')
         //Si article(s) dans le panier => remplissage products envoyé à l'API
         JSON.parse(localStorage.getItem('userBasket')).forEach((product) =>{
-          product.push(product._id);
+          products.push(product._id);
         });
-        console.log("Administration : Ce tableau sera envoyé à l'API : " + product)
+        console.log("Administration : Ce tableau sera envoyé à l'API : " + products)
         return true;
     }
   };
 
-/*async function sendRequest() {
-    const reponse = await fetch("http://localhost:3000/api/" + "/order", {
+async function sendRequest(order) {
+    const response = await fetch(url + "order", {
       method: "POST",
       headers: {
-        "Conten-Type": "application/json"
+        "Content-Type": "application/json"
       },
-      //body: JSON.stringify(formOrder)
+      body: order
     });
       //Save retour de l'API dans sessionStorage
-      sessionStorage.getItem('order', this.responseText);
+      //console.log(await response.json())
+      sessionStorage.setItem('order', JSON.stringify(await response.json()));
 
-      //Charger page order-confirm ( A REMPLIR )
-
-
-    const json = await response.json();
-    afficherLeResultat(json);
+      //Charger page order-confirm 
+      window.open('./confirm-order.html')
   }
-sendRequest(); */
+
 
 //ecoute du click sur le bouton envoyer
 function validForm(){
   let formBtn = document.getElementById("formButton");
-  formButton.addEventListener('click',function() {
-  alert('hello!! Le clique fonctionne bien et ici bientot ça sera la validtion de la commande')
+  formBtn.addEventListener('click',function() {
   if(checkBasket() == true && checkInputs() != null){
     console.log("Administration : L'envoi peut être effectué");
   //crétion de l'objet à envoyer
   let objet = {
-    formOrder,
+    contact,
     products
   };
   console.log('Administration : ' + objet);
@@ -249,12 +269,12 @@ function validForm(){
 
   //Une fois la commande effectuée => retour étt initial
   contact = {};
-  product = {};
+  products = [];
   localStorage.clear();
   }else{
     console.log('Administration : ERROR');
   };
 });
 };
-//creer alerte "commande passée avec succés" + infos
 
+validForm();

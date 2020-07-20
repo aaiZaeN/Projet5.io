@@ -6,8 +6,9 @@
 }
 
 section {
-  grid: 2/4;
-  margin: 25px 0 0 25px;
+  grid-column: 2/2;
+  margin: 3rem 0;
+  text-align: left;
   fieldset {
     width: 250px;
     box-sizing: border-box;
@@ -35,11 +36,13 @@ section {
 }
 
 #basketResume {
-  grid: 2/4;
+  grid-column: 1/2;
+  margin: 5rem auto;
 }
 
 .cancelProduct{
   color: red;
+  padding: 2px;
 }
 
 #listTitle {
@@ -63,9 +66,9 @@ th {
 }
 
 table {
-  margin: 150px 0 0 150px;
   padding: 5px;
   border-radius: 15px;
+  text-align: center;
   .cancelProduct {
     font-size: 15px;
     color: rgb(216, 147, 147);
@@ -81,4 +84,5 @@ table {
 .cancelProduct:hover {
   color: rgb(218, 31, 31);
   font-size: 16px;
+  padding: 1px;
   }
