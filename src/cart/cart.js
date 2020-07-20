@@ -241,7 +241,6 @@ async function sendRequest(order) {
       body: order
     });
       //Save retour de l'API dans sessionStorage
-      //console.log(await response.json())
       sessionStorage.setItem('order', JSON.stringify(await response.json()));
 
       //Charger page order-confirm 
