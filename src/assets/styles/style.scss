@@ -10,7 +10,7 @@
   display: grid;
   grid:
     "header" auto
-    "content" 1fr
+    "content" "content" 1fr 
     "footer" auto /
     auto;
 }
@@ -58,3 +58,23 @@ footer {
   text-align: center;
   color: white;
 }
+
+
+@media (max-width: 480px) {
+    
+  header{
+    .header-brand {
+      padding-right: 10px;
+      font-size: 2rem;
+      text-align: center;
+    }
+    ul {
+      display: flex;
+      li {
+        .header-nav {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}  

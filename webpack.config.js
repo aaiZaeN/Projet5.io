@@ -1,12 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { template } = require("babel-core");
 
 module.exports = {
   entry: {
     main: path.join(__dirname, "src/index.js"),
-    form: path.join(__dirname, "src/form/form.js"),
+    confirmOrder: path.join(__dirname, "src/confirmOrder/confirm-order.js"),
     cart: path.join(__dirname, "src/cart/cart.js"),
     products: path.join(__dirname, "src/products/products.js"),
   },
@@ -29,34 +30,26 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: './src/assets/images/*',
-          to: 'assets/images',
-          flatten: true,
-        },
-      ],
-    }),
+    
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: path.join(__dirname, "./src/index.html"),
       chunks: ["main", "topbar"]
     }),
     new HtmlWebpackPlugin({
-      filename: "cart.html",
+      filename:"cart.html",
       template: path.join(__dirname, "./src/cart/cart.html"),
       chunks: ["cart", "topbar"]
     }),
     new HtmlWebpackPlugin({
-      filename: "cart.html",
+      filename: "products.html",
       template: path.join(__dirname, "./src/products/products.html"),
       chunks: ["products", "topbar"]
     }),
     new HtmlWebpackPlugin({
-      filename: "form.html",
-      template: path.join(__dirname, "./src/form/form.html"),
-      chunks: ["form", "topbar"]
+      filename: "confirm-order.html",
+      template: path.join(__dirname, "./src/confirmOrder/confirm-order.html"),
+      chunks: ["confirmOrder", "topbar"]
     })
   ],
   stats: "minimal",

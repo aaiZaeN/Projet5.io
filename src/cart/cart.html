@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.scss">
-    <title>Orinoco | Panier</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Muli:300,400,700&display=swap" rel="stylesheet"/>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700&display=swap" rel="stylesheet"/>
+
+    <title>Orinoco | Accueil</title>
+
   </head>
   <body>
     <div class="container">
@@ -22,9 +23,54 @@
           </li>
         </ul>
       </header>
-      
-      <div class="cart"></div>
-      <footer>Orinoco - Projet 5 OpenclassRooms</footer>
+			<div id="parent">
+        <div id="basketResume">
+          <p id="emptyBasket">Votre panier est vide</p>
+        </div>
+        
+        <section>
+          <h2>Informations de contact</h2>
+          <p>
+            <label for="name">
+              <span>Nom : </span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input type="text" id="formName" name="username">
+          </p>
+          <p>
+            <label for="firstName">
+              <span>Prénom : </span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input type="text" id="formFirstName" name="username">
+          </p>
+          <p>
+            <label for="mail">
+              <span>e-mail :</span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input type="email" id="formMail" name="usermail">
+          </p>
+          <p>
+            <label for="city">
+              <span>Ville : </span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input type="text" id="formCity" name="city">
+          </p>
+          <p>
+            <label for="address">
+              <span>Adresse : </span>
+              <strong><abbr title="required">*</abbr></strong>
+            </label>
+            <input row type="text" id="formAddress" name="address">
+          </p>          
+          <button id="formButton">Passer votre commande</button>
+      </section>
+         </div>        
+      </div>
+      <script src=""></script>
+			<footer>Orinoco - Projet 5 OpenClassRooms</footer>
     </div>
   </body>
 </html>
