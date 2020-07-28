@@ -33,7 +33,8 @@ const apiUrl = fetch(url);
   })
   .catch((error) => console.log(error));
 	
-	
+
+
 
 	function createPhotoBlock(product, listProduct){
 		let productBlock = document.createElement("div");
@@ -51,7 +52,7 @@ const apiUrl = fetch(url);
 		productImage.setAttribute("src", product.imageUrl);
 		productImage.setAttribute("alt", "image du produit"); 
 		productLink.setAttribute("href", "products.html?id=" + product._id);
-	
+
 				 
 		listProduct.appendChild(productBlock);
 		productBlock.appendChild(productLeft);
@@ -84,6 +85,7 @@ if(localStorage.getItem("userBasket")){
   /*User a maintenant un panier*/
 	let userBasket = JSON.parse(localStorage.getItem("userBasket"));
 	console.log(userBasket)
+
 
 	/*Exemple
 function test(){

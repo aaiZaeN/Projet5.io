@@ -49,9 +49,12 @@ const url = "http://localhost:3000/api/" + produitSell + "/"+idProduit;
             userBasket.push(products);
             localStorage.setItem("userBasket", JSON.stringify(userBasket));
             console.log("Administration : le produit a été ajouté au panier");
-            alert("Vous avez ajouté ce produit dans votre panier: "+product.name)
+            alert("Vous avez ajouté ce produit dans votre panier: "+product.name);
           });
           
+        
+         
+
 
           switch(produitSell){
             case "cameras":
@@ -63,7 +66,8 @@ const url = "http://localhost:3000/api/" + produitSell + "/"+idProduit;
                 
    }).catch(err => {
       console.error('Error: ', err);
+      alert('Vous êtes arrivé ici par erreur, vous allez être redirigé !');
+      window.open("./index.html");
 });
-
 
   
