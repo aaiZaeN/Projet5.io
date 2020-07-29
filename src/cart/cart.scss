@@ -86,3 +86,11 @@ table {
   font-size: 16px;
   padding: 1px;
   }
+
+  input:invalid {
+    border: 2px dashed red;
+  }
+  
+  input:valid {
+    border: 2px solid lime;
+  }
