@@ -35,35 +35,35 @@
               <span>Nom : </span>
               <strong><abbr title="required">*</abbr></strong>
             </label>
-            <input type="text" id="formName" name="username">
+            <input type="text" id="formName" name="name" placeholder="Nom" autocapitalize="characters" pattern="[A-Za-zÀ-ÿ]+">
           </p>
           <p>
             <label for="firstName">
               <span>Prénom : </span>
               <strong><abbr title="required">*</abbr></strong>
             </label>
-            <input type="text" id="formFirstName" name="username">
+            <input type="text" id="formFirstName" name="firstName" placeholder="Prénom" pattern="[a-zA-ZÀ-ÿ]+">
           </p>
           <p>
             <label for="mail">
               <span>e-mail :</span>
               <strong><abbr title="required">*</abbr></strong>
             </label>
-            <input type="email" id="formMail" name="usermail">
+            <input type="email" id="formMail" name="usermail" placeholder="exemple@mail.fr" autocapitalize="none" >
           </p>
           <p>
             <label for="city">
               <span>Ville : </span>
               <strong><abbr title="required">*</abbr></strong>
             </label>
-            <input type="text" id="formCity" name="city">
+            <input type="text" id="formCity" name="city" placeholder="Ville" autocapitalize="words" pattern="[a-zA-ZÀ-ÿ]+">
           </p>
           <p>
             <label for="address">
               <span>Adresse : </span>
               <strong><abbr title="required">*</abbr></strong>
             </label>
-            <input row type="text" id="formAddress" name="address">
+            <input row type="text" id="formAddress" name="address" placeholder="Adresse" pattern="[a-zA-ZÀ-ÿ0-9 ]+">
           </p>          
           <button id="formButton">Passer votre commande</button>
       </section>

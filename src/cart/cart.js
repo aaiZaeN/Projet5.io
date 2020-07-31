@@ -4,8 +4,6 @@ import './cart.scss';
 const produitSell = "cameras";
 const url = "http://localhost:3000/api/" + produitSell + "/";
 
-
-
 //Tableau et objet demandé par l'API pour la commande
 let contact;
 let products = [];
@@ -41,7 +39,6 @@ if(localStorage.getItem("userBasket")){
 	let userBasket = JSON.parse(localStorage.getItem("userBasket"));
 	console.log(userBasket)
 
-
     //Vérifie si un produit est dans le panier
     if(JSON.parse(localStorage.getItem("userBasket")).length > 0){
       //Si produit dans le panier = supprimer message + creer tableau
@@ -68,9 +65,7 @@ if(localStorage.getItem("userBasket")){
       rowTable.appendChild(columnRemove);
       columnRemove.textContent = "";
       
-
       //Pour chaque produit du panier, on créé une ligne avec le nom, le prix, l'accessoire (lenses)
-      
       //Init de l'incrémentation de l'id des lignes pour chaque produit
       let i = 0;
       
@@ -89,7 +84,6 @@ if(localStorage.getItem("userBasket")){
         //cancelProduct 
         removeProduct.addEventListener('click', cancelProduct.bind(i));
         i++;
-
         
         bill.appendChild(rowProduct);
         rowProduct.appendChild(nameProduct);
@@ -116,10 +110,8 @@ if(localStorage.getItem("userBasket")){
 
       //Total à payer dans l'addition
       console.log("Administration : " + totalPrice);
-      document.getElementById("sommeTotal").textContent = totalPrice + " €";
-      
+      document.getElementById("sommeTotal").textContent = totalPrice + " €";      
   };
-
   
   //Supprimer un produit du panier
  function cancelProduct (i){
@@ -137,9 +129,7 @@ if(localStorage.getItem("userBasket")){
       window.location.reload();
   };
 
-
   //POST Formulaire
-
   //Vérification des inputs
   function checkInputs() {
     //controle regex
@@ -207,7 +197,6 @@ if(localStorage.getItem("userBasket")){
       };
   };
 
-
   //Vérifier panier
   function checkBasket() {
     //Minimum 1 produit dans le panier
@@ -247,7 +236,6 @@ async function sendRequest(order) {
       window.open('./confirm-order.html')
   }
 
-
 //ecoute du click sur le bouton envoyer
 function validForm(){
   let formBtn = document.getElementById("formButton");
@@ -275,5 +263,4 @@ function validForm(){
   };
 });
 };
-
 validForm();
