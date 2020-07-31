@@ -52,10 +52,6 @@ const url = "http://localhost:3000/api/" + produitSell + "/"+idProduit;
             alert("Vous avez ajouté ce produit dans votre panier: "+product.name);
           });
           
-        
-         
-
-
           switch(produitSell){
             case "cameras":
             produitSelected.lenses.forEach((produit)=>{
@@ -67,7 +63,7 @@ const url = "http://localhost:3000/api/" + produitSell + "/"+idProduit;
    }).catch(err => {
       console.error('Error: ', err);
       alert('Vous êtes arrivé ici par erreur, vous allez être redirigé !');
-      window.open("./index.html");
+      window.location = "./index.html";
 });
 
   
